@@ -411,7 +411,43 @@
 
     // Hacer que aparezca y desaparezca cada 4 segundos (puedes ajustar el tiempo)
     setInterval(toggleSpeechBubble, 4000);
+
+    
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const photoFrame = document.getElementById('photoFrame');
+    const selectedPhoto = document.getElementById('selectedPhoto');
+
+    // Mostrar la foto seleccionada
+    function showPhoto(photoUrl) {
+        selectedPhoto.src = photoUrl;
+        photoFrame.style.display = 'block';
+    }
+
+    // Escuchar clics en todo el documento
+    document.addEventListener('click', function(event) {
+        // Verificar si el clic ocurrió fuera del marco de la foto
+        if (!photoFrame.contains(event.target)) {
+            photoFrame.style.display = 'none';  // Ocultar el marco de la foto
+        }
+    });
+
+    // El código para abrir el cofre sigue igual
+    document.getElementById('chest').addEventListener('click', function() {
+        const chest = document.getElementById('chest');
+        chest.classList.toggle('open');
+    });
+
+    // Asigna la función showPhoto a los eventos onclick de las fotos
+    document.querySelectorAll('.flower-photo').forEach(photo => {
+        photo.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevenir que el clic también cierre el marco
+            showPhoto(this.src); // Mostrar la foto seleccionada
+        });
+    });
+});
+
 
     </script>
 </body>
