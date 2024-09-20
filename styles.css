@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #FF8A80, #FF5252);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-top: 30px;
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    z-index: 3;
+    opacity: 0;
+    animation: fadeIn 2s forwards 6s; /* Aparece después de 6 segundos */
+}
+
+#surprise-message {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Contenedor de panda y corazón */
+.panda-and-heart {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: -300px;
+    animation: walk 6s forwards ease-in-out;
+}
+
+/* Panda con cuerpo redondo */
+.panda {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    background-color: #fff;
+    border-radius: 50%; /* Hacemos el cuerpo redondo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Orejas redondeadas */
+.panda .ear {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    background-color: #000;
+    border-radius: 50%;
+    top: -15px;
+}
+
+.panda .ear.left {
+    left: 20px;
+}
+
+.panda .ear.right {
+    right: 20px;
+}
+
+/* Cara redonda */
+.panda .face {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 15px;
+    box-shadow: inset 0 0 0 5px #000;
+}
+
+/* Ojos tiernos grandes con brillo */
+.panda .eye {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #000;
+    border-radius: 50%;
+    top: 30px;
+}
+
+.panda .eye.left {
+    left: 10px;
+}
+
+.panda .eye.right {
+    right: 10px;
+}
+
+.panda .eye .pupil {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 7px;
+    left: 7px;
+}
+
+/* Nariz pequeña */
+.panda .nose {
+    position: absolute;
+    top: 65px;
+    left: 42px;
+    width: 15px;
+    height: 12px;
+    background-color: #000;
+    border-radius: 50%;
+}
+
+/* Boca sonriente */
+.panda .mouth {
+    position: absolute;
+    top: 80px;
+    left: 30px;
+    width: 40px;
+    height: 20px;
+    border-bottom: 3px solid #000;
+    border-radius: 50%;
+}
+
+/* Mejillas rosadas */
+.panda .cheek {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background-color: #FF6F61;
+    border-radius: 50%;
+    top: 55px;
+}
+
+.panda .cheek.left {
+    left: 15px;
+}
+
+.panda .cheek.right {
+    right: 15px;
+}
+
+/* Cuerpo redondo */
+.panda .body {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 110px;
+}
+
+/* Manos del panda */
+.panda .hand {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #000;
+    border-radius: 50%;
+    top: 120px;
+}
+
+.panda .hand.left {
+    left: -15px;
+}
+
+.panda .hand.right {
+    right: -15px;
+}
+
+/* Pies del panda */
+.panda .foot {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background-color: #000;
+    border-radius: 50%;
+    bottom: 5px;
+}
+
+.panda .foot.left {
+    left: 20px;
+}
+
+.panda .foot.right {
+    right: 20px;
+}
+
+/* Corazón */
+.heart {
+    width: 100px;
+    height: 100px;
+    background-color: #FF5252;
+    transform: rotate(45deg);
+    position: relative;
+    top: 30px;
+    left: 20px;
+    z-index: 2;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #FF5252;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -50px;
+    left: 0;
+}
+
+.heart::after {
+    top: 0;
+    left: -50px;
+}
+
+/* Movimiento del panda y el corazón */
+@keyframes walk {
+    0% {
+        left: -300px;
+    }
+    100% {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Pies del panda */
+.panda .foot {
+    position: absolute;
+    width: 35px; /* Reducimos el tamaño */
+    height: 25px; /* Un poco más alto para dar sensación de volumen */
+    background-color: #000;
+    border-radius: 50%; /* Forma redondeada */
+    bottom: -10px; /* Ajustamos la posición */
+}
+
+/* Pie izquierdo */
+.panda .foot.left {
+    left: 25px; /* Movemos el pie hacia la izquierda */
+}
+
+/* Pie derecho */
+.panda .foot.right {
+    right: 25px; /* Movemos el pie hacia la derecha */
+}
+
+/* Manos del panda */
+.panda .hand {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background-color: #000;
+    border-radius: 50%;
+    top: 120px;
+}
+
+.panda .hand.left {
+    left: -10px;
+}
+
+.panda .hand.right {
+    right: -10px;
+}
+
+/* Carta que sale del corazón */
+.card {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    background-color: #fff;
+    color: #FF5252;
+    border: 2px solid #FF5252;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    opacity: 0; /* Inicialmente invisible */
+    transform: translateY(20px); /* Empezar un poco más abajo */
+    animation: appear 1s forwards; /* Animación para aparecer */
+}
+
+/* Efecto de aparición de la carta */
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Inicio más bajo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-30px); /* Moverse hacia arriba */
+    }
+}
+
+/* Animación de la carta que sale del corazón */
+.heart:hover .card {
+    animation: slideOut 0.5s forwards; /* Animación al hacer hover */
+}
+
+/* Efecto de deslizamiento de la carta */
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px); /* Desplazarse hacia arriba */
+    }
+}

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje de Amor y Amistad</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffd6e0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+        }
+        .heart {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: red;
+            transform: rotate(45deg);
+            right: -25px;
+            top: 125px;
+            transition: all 3s ease;
+        }
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: red;
+            border-radius: 50%;
+        }
+        .heart::before {
+            left: -25px;
+        }
+        .heart::after {
+            top: -25px;
+        }
+        .panda {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            right: -80px;
+            top: 120px;
+            transition: all 3s ease;
+            z-index: 2;
+        }
+        .panda-face {
+            position: relative;
+            width: 60px;
+            height: 45px;
+            background-color: white;
+            border-radius: 50% 50% 45% 45%;
+        }
+        .ear {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #333;
+            border-radius: 50%;
+            top: -5px;
+        }
+        .ear.left { left: 5px; }
+        .ear.right { right: 5px; }
+        .eye {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #333;
+            border-radius: 50%;
+            top: 15px;
+        }
+        .eye.left { left: 12px; }
+        .eye.right { right: 12px; }
+        .eye::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background-color: white;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+        }
+        .nose {
+            position: absolute;
+            width: 10px;
+            height: 6px;
+            background-color: #333;
+            border-radius: 50%;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .mouth {
+            position: absolute;
+            width: 16px;
+            height: 8px;
+            border-bottom: 2px solid #333;
+            border-radius: 0 0 50% 50%;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .cloud {
+            position: absolute;
+            width: 0;
+            height: 0;
+            background: white;
+            border-radius: 30px;
+            top: 250px;
+            left: 50px;
+            opacity: 0;
+            transition: all 2s ease;
+            z-index: 1;
+        }
+        .cloud::before,
+        .cloud::after {
+            content: "";
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+        .cloud::before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 15px;
+        }
+        .cloud::after {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            right: 15px;
+        }
+        .message {
+            position: absolute;
+            width: 260px;
+            top: 270px;
+            left: 70px;
+            text-align: center;
+            font-size: 14px;
+            color: #ff4081;
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 3;
+        }
+        .speech-bubble {
+            position: absolute;
+            width: 120px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 10px;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 3;
+        }
+        .speech-text {
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+        }
+        .speech-bubble.visible {
+            opacity: 1;
+        }
+        .panda.walk {
+            animation: walk 0.5s infinite alternate;
+        }
+        @keyframes walk {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+        .floating-text {
+            position: absolute;
+            font-size: 16px;
+            color: #ff4081;
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 4;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart"></div>
+        <div class="panda">
+            <div class="panda-face">
+                <div class="ear left"></div>
+                <div class="ear right"></div>
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="nose"></div>
+                <div class="mouth"></div>
+            </div>
+            <div class="speech-bubble">
+                <div class="speech-text">¡Sebas te quiere!</div>
+            </div>
+        </div>
+        <div class="cloud"></div>
+        <div class="message">
+            Kari, este dia del amor y amistad, quiero que sea el que te ayude a recordar que es lo que nos gusta del uno del otro,
+            cuando te tengo cerca siento que eres una nubesita a la que quiero abrazar, en algun momento entenderas lo que significa un buen abrazo.
+            Solo espero que podamos compartir un sentimiento que marque positivamente cada vez que quiera pensarte.
+                    </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const heart = document.querySelector('.heart');
+            const panda = document.querySelector('.panda');
+            const cloud = document.querySelector('.cloud');
+            const message = document.querySelector('.message');
+            const speechBubble = document.querySelector('.speech-bubble');
+            const container = document.querySelector('.container');
+
+            // Función para mostrar el mensaje en la burbuja
+            function showSpeechBubble() {
+                speechBubble.classList.add('visible');
+                
+                // Desplazar el mensaje
+                let posX = 0;
+                const interval = setInterval(() => {
+                    posX += 2; // Cambia la velocidad del desplazamiento aquí
+                    speechBubble.style.left = `${50 + posX}%`;
+
+                    // Desaparecer al llegar al final de la pantalla
+                    if (posX > 50) {
+                        speechBubble.style.opacity = '0';
+                        clearInterval(interval);
+                    }
+                }, 50); // Cambia la frecuencia del desplazamiento aquí
+            }
+
+            // Inicio de la animación
+            setTimeout(() => {
+                panda.style.right = '80px';
+                panda.classList.add('walk');
+                heart.style.right = '175px';
+            }, 500);
+
+            // Panda llega al centro
+            setTimeout(() => {
+                panda.classList.remove('walk');
+                panda.style.transform = 'translateX(50px)';
+                heart.style.transform = 'rotate(45deg) scale(1.5)';
+                
+                // La nube aparece
+                setTimeout(() => {
+                    cloud.style.width = '300px';
+                    cloud.style.height = '200px';
+                    cloud.style.opacity = '1';
+                    
+                    // El mensaje de la burbuja aparece
+                    setTimeout(() => {
+                        showSpeechBubble(); // Mostrar burbuja de habla
+                        message.style.opacity = '1';
+                        createFloatingText();
+                    }, 1000);
+                }, 1000);
+            }, 3500);
+
+            // Cambiar mensaje al hacer clic
+            document.addEventListener('click', function() {
+                message.textContent = "Gracias por ser parte de mi vida. Tu amistad es un regalo que valoro cada día. Juntos hemos creado recuerdos maravillosos y espero que sigamos compartiendo muchos más. ¡Eres verdaderamente especial para mí!";
+                message.style.opacity = '0';
+                setTimeout(() => {
+                    message.style.opacity = '1';
+                }, 50);
+                createFloatingText();
+            });
+        });
+    </script>
+</body>
+</html>
